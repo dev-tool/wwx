@@ -14,7 +14,7 @@ var isparta = require('isparta');
 // when they're loaded
 require('babel-core/register');
 
-gulp.task('static', function () {
+gulp.task('lint', function () {
   return gulp.src('**/*.js')
     .pipe(excludeGitignore())
     .pipe(eslint())
@@ -66,8 +66,8 @@ gulp.task('babel', function () {
 });
 
 gulp.task('watch', function () {
-  return gulp.watch('lib/**/*.js', ['static', 'test']);
+  return gulp.watch('lib/**/*.js', ['lint', 'test']);
 });
 
 gulp.task('prepublish', ['nsp', 'babel']);
-gulp.task('default', ['static', 'test', 'coveralls', 'watch']);
+gulp.task('default', ['lint', 'test', 'coveralls', 'watch']);
